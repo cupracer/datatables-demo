@@ -4,7 +4,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Demo;
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+const TEMPLATES_DIR = __DIR__ . '/../templates';
 
 $app = new \Slim\App;
 
