@@ -14,7 +14,7 @@ class Demo {
 
     public function getPage() {
         try {
-            $output = $this->twig->render('datatables.html', ['name' => 'Fabien']);
+            $output = $this->twig->render('datatables.html', ['title' => 'Datatables Demo']);
         }catch (\Exception $e) {
             $output = "Exception: " . $e->getMessage();
         }
