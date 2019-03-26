@@ -24,9 +24,9 @@ class Demo {
 
     public function getJson() {
         $examples = array(
-            array('Kurt', 'Cobain', 'US'),
-            array('Bob', 'Marley', 'Jamaika'),
-            array('Noch', 'Einer', 'Irgendwo')
+            array('Kurt', 'Cobain', 'US', 'test1'),
+            array('Bob', 'Marley', 'Jamaika', 'test2'),
+            array('Noch', 'Einer', 'Irgendwo', 'test3')
         );
 
         $datatables = array(
