@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <table id="demotable">
+        <table id="demotableValues">
             <thead>
                 <th>firstName</th>
                 <th>lastName</th>
@@ -21,26 +21,57 @@
             </tbody>
         </table>
 
+        <hr>
+
+        <table id="demotableKeyValues">
+            <thead>
+            <th>firstName</th>
+            <th>lastName</th>
+            <th>Button</th>
+            </thead>
+            <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tbody>
+        </table>
+
         <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready( function () {
-                $('#demotable').DataTable({
-                    ajax: '/json',
+                $('#demotableValues').DataTable({
+                    ajax: '/json/values',
                     order: [[ 1, "asc" ]],
                     columnDefs: [
                         {
                             targets: 0
                         },
                         {
-                            targets: 1
+                            targets: 1,
+                            visible: false
                         },
                         {
                             targets: 2
                         },
                         {
                             targets: 3,
+                            render: function(data, type, row) {
+                                return '<a href="#' + data + '"><img src="some-img" /></a>';
+                            }
+                        }
+                    ]
+                });
+
+                $('#demotableKeyValues').DataTable({
+                    ajax: '/json/keyValues',
+                    order: [[ 1, "asc" ]],
+                    columns: [
+                        { data: 'firstName'},
+                        { data: 'lastName'},
+                        {
+                            data: 'buttonLink',
                             render: function(data, type, row) {
                                 return '<a href="#' + data + '"><img src="some-img" /></a>';
                             }

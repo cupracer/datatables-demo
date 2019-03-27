@@ -16,9 +16,10 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $response;
 });
 
-$app->get('/json', function (Request $request, Response $response, array $args) {
+$app->get('/json/{type}', function (Request $request, Response $response, array $args) {
+    $type = $args['type'];
     $demo = new Demo();
-    $response->getBody()->write($demo->getJson());
+    $response->getBody()->write($demo->getJson($type));
 
     return $response;
 });

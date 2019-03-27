@@ -6,6 +6,7 @@ class Demo {
 
     protected $twig;
 
+
     public function __construct()
     {
         $loader = new \Twig\Loader\FilesystemLoader(TEMPLATES_DIR);
@@ -22,16 +23,55 @@ class Demo {
         return $output;
     }
 
-    public function getJson() {
+    public function getJsonValues() {
         $examples = array(
             array('Kurt', 'Cobain', 'US', 'test1'),
             array('Bob', 'Marley', 'Jamaika', 'test2'),
             array('Noch', 'Einer', 'Irgendwo', 'test3')
         );
 
-        $datatables = array(
-            'data' => $examples
+        return $examples;
+    }
+
+    public function getJsonKeyValues() {
+        $examples = array(
+            array(
+                'firstName' => 'Kurt',
+                'lastName' => 'Cobain',
+                'location' => 'US',
+                'buttonLink' => 'test1'
+            ),
+            array(
+                'firstName' => 'Bob',
+                'lastName' => 'Marley',
+                'location' => 'Jamaika',
+                'buttonLink' => 'test2'
+            ),
+            array(
+                'firstName' => 'Noch',
+                'lastName' => 'Einer',
+                'location' => 'Irgendwo',
+                'buttonLink' => 'test3'
+            )
         );
+
+        return $examples;
+    }
+
+
+    public function getJson($type) {
+        switch ($type) {
+            case 'values':
+                $datatables = array('data' => $this->getJsonValues());
+                break;
+
+            case 'keyValues':
+                $datatables = array('data' => $this->getJsonKeyValues());
+                break;
+
+            default:
+                return false;
+        }
 
         return json_encode($datatables);
     }
